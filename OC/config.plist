@@ -1609,9 +1609,9 @@
 			</dict>
 			<dict>
 				<key>Arguments</key>
-				<string></string>
+				<string>flags=0x0F</string>
 				<key>Comment</key>
-				<string></string>
+				<string>Scan ESP + XBOOTLDR + Linux Root + Linux Data partitions</string>
 				<key>Enabled</key>
 				<true/>
 				<key>HideVerbose</key>
