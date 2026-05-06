@@ -55,11 +55,25 @@ Multi-boot configuration for macOS Tahoe 26 / Windows 11 / Ubuntu Linux.
 
 ### Ubuntu Boot Entry
 
-**Issue**: Ubuntu wasn't appearing in OpenCore picker.
+**Issue**: Ubuntu entry appears in OpenCore menu but loops back to OpenCore when selected.
 
-**Fix Applied**: Added `flags=0x0F` to `OpenLinuxBoot.efi` driver arguments to scan Linux root/data partitions.
+**Root Cause**: During OpenCore setup, Ubuntu's shimx64.efi was temporarily replaced with OpenCore bootstrap, causing boot failures.
 
-**Status**: Should work after reboot. Ubuntu will boot directly without GRUB chainloading.
+**Fix Applied**:
+1. Restored original Ubuntu shim from backup (`shimx64.efi.bak` → `shimx64.efi`)
+2. Set `RealPath=true` in manual Ubuntu entry for proper device path resolution
+3. Configured `OpenLinuxBoot.efi` with `flags=0x0F` to scan Linux partitions
+4. Set `ext4_x64.efi` to `LoadEarly=true` for proper filesystem access
+
+**Manual Entry Configuration**:
+```xml
+<key>Path</key>
+<string>\EFI\ubuntu\shimx64.efi</string>
+<key>RealPath</key>
+<true/>
+```
+
+**Status**: Ubuntu should now boot properly. The entry will load Ubuntu's UEFI shim → GRUB → Linux kernel.
 
 ### Camera
 
