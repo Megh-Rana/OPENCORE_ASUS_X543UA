@@ -779,7 +779,7 @@
 				<key>BundlePath</key>
 				<string>IntelBTPatcher.kext</string>
 				<key>Comment</key>
-				<string>V2.4.0</string>
+				<string>V2.5.0-d2 Tahoe fork (lshbluesky)</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -797,7 +797,7 @@
 				<key>BundlePath</key>
 				<string>IntelBluetoothFirmware.kext</string>
 				<key>Comment</key>
-				<string>V2.4.0</string>
+				<string>V2.5.0-d2 Tahoe fork (lshbluesky)</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
