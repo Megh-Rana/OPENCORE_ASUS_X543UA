@@ -5,8 +5,8 @@ Multi-boot configuration for macOS Tahoe 26 / Windows 11 / Ubuntu Linux.
 ## Hardware
 
 - **Model**: ASUS VivoBook X543UA
-- **CPU**: Intel Core i3-8130U (Kaby Lake-R)
-- **GPU**: Intel UHD Graphics 620
+- **CPU**: Intel Core i3-7020U (Kaby Lake)
+- **GPU**: Intel HD Graphics 620
 - **Audio**: Realtek ALC256
 - **WiFi**: Intel Wireless (itlwm)
 - **Bluetooth**: Intel Bluetooth
@@ -15,7 +15,7 @@ Multi-boot configuration for macOS Tahoe 26 / Windows 11 / Ubuntu Linux.
 ## What Works
 
 - ✅ macOS Tahoe 26.x boot
-- ✅ Intel UHD 620 graphics acceleration
+- ✅ Intel HD 620 graphics acceleration
 - ✅ WiFi (itlwm v2.3.0)
 - ✅ Bluetooth (with Tahoe-compatible fork v2.5.0-d2)
 - ✅ Trackpad (VoodooI2C + VoodooI2CHID)
