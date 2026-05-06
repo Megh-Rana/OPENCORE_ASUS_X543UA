@@ -1,0 +1,10 @@
+# Ignore Windows boot files
+Boot/
+Microsoft/
+
+# Ignore Ubuntu boot files
+ubuntu/
+
+# Ignore macOS metadata
+.DS_Store
+._*
