@@ -57,13 +57,17 @@ Multi-boot configuration for macOS Tahoe 26 / Windows 11 / Ubuntu Linux.
 
 **Issue**: Ubuntu entry appears in OpenCore menu but loops back to OpenCore when selected.
 
-**Root Cause**: During OpenCore setup, Ubuntu's shimx64.efi was temporarily replaced with OpenCore bootstrap, causing boot failures.
+**Root Cause**: GRUB configuration was unable to locate the Ubuntu root partition, causing boot failures.
 
-**Fix Applied**:
+**Fixes Applied**:
 1. Restored original Ubuntu shim from backup (`shimx64.efi.bak` → `shimx64.efi`)
 2. Set `RealPath=true` in manual Ubuntu entry for proper device path resolution
 3. Configured `OpenLinuxBoot.efi` with `flags=0x0F` to scan Linux partitions
 4. Set `ext4_x64.efi` to `LoadEarly=true` for proper filesystem access
+5. **Updated GRUB config** (`ubuntu/grub.cfg`) with robust fallback logic:
+   - Tries UUID search first (`8109ab0b-74b4-47e1-89aa-cc890c3eef3d`)
+   - Falls back to direct partition reference (`hd0,gpt5`)
+   - Provides fallback boot menu if main GRUB config is missing
 
 **Manual Entry Configuration**:
 ```xml
@@ -73,7 +77,12 @@ Multi-boot configuration for macOS Tahoe 26 / Windows 11 / Ubuntu Linux.
 <true/>
 ```
 
-**Status**: Ubuntu should now boot properly. The entry will load Ubuntu's UEFI shim → GRUB → Linux kernel.
+**GRUB Configuration** (`/EFI/ubuntu/grub.cfg`):
+- Backup saved as `grub.cfg.bak`
+- New config includes UUID search + partition fallback
+- Fallback menu with normal/recovery boot options
+
+**Status**: Ubuntu should now boot properly. Boot chain: OpenCore → Ubuntu UEFI shim → GRUB → Linux kernel.
 
 ### Camera
 
